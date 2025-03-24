@@ -6,9 +6,14 @@ use App\Models\BlogPost;
 use App\Http\Requests\StoreBlogPostRequest;
 use App\Http\Requests\UpdateBlogPostRequest;
 use App\Http\Resources\BlogPostResource;
+use App\Repositories\BlogPostRepositoryInterface;
 
 class BlogPostController extends Controller
 {
+
+    public function __construct(
+        protected BlogPostRepositoryInterface $blogPostRepository, //NEED TO REGISTER THIS INTERFACE IN THE AppServiceProvider register method
+    ) {}
     /**
      * Display a listing of the resource.
      */

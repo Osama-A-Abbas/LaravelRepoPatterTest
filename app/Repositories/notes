@@ -1,0 +1,30 @@
+1- create BaseRepo + BaseRepoInterface
+
+/\interfaces contains functions with no body e.g:  public function funcName(type $var);
+
+2- BaseRepo will implment BaseRepoInterface
+
+3- crate other interfaces and repos for each model, these other repos will:
+     1- extended the BaseRepo
+     2- implement the interface for that model
+
+
+
+
+
+Notes:
+- It is a common practise to bind an interface to its implementation class
+in the AppServiceProvider register method, doing so will make it easier changing between
+interfaces and classes.
+
+- Laravel automatically can bind them using naming convention,
+e.g: PostInterface  ---- Post
+Laravel will figure that out, yet it is better to bind them in AppServiceProvider too
+
+
+- So far:
+  create BaseRepoInterface and BaseRepo that implements it
+  create ModelInterface and ModelRepo which extends BaseRepo and Implment its own ModelInterface
+  Create DTO (Data Tranasfer object) which is reposbille for data transfaring
+  use DTO inside the ModelRepo
+  IN the controller __construct invoke the ModelRepoInterface

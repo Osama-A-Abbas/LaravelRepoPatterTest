@@ -17,9 +17,13 @@ class BaseRepository implements BaseRepositoryInterface
       return (array) $this->model->all();
   }
 
-  public function find(int $id): ?stdClass
+  public function find(int $id): stdClass
   {
     return (object) $this->model->findOrFail($id)->toArray();
   }
 
+  protected function format(Model $model): stdClass
+  {
+    return (object) $model->toArray();
+  }
 }

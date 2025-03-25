@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\DataTransferObjects\BlogPostDto;
 use App\Models\BlogPost;
 use App\Http\Requests\BlogPostRequest;
-use App\Http\Requests\UpdateBlogPostRequest;
 use App\Http\Resources\BlogPostResource;
 use App\Repositories\BlogPostRepositoryInterface;
 
@@ -32,7 +31,7 @@ class BlogPostController extends Controller
     public function show(BlogPost $blogPost)
     {
         return BlogPostResource::make(
-            $this->blogPostRepository->show($blogPost->id)
+            $this->blogPostRepository->find($blogPost->id)
         );
     }
 
@@ -59,7 +58,7 @@ class BlogPostController extends Controller
             $this->blogPostRepository->update(
             $blogPost->id,
             BlogPostDto::fromRequest($request)
-        ));
+        )); //->response()->setStatusCode(201)
     }
 
     /**

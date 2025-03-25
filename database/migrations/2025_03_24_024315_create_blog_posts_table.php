@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('source');
-            $table->text('body');
+            $table->string('source')->nullable();
+            $table->text('body')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

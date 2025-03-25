@@ -24,7 +24,22 @@ Laravel will figure that out, yet it is better to bind them in AppServiceProvide
 
 - So far:
   create BaseRepoInterface and BaseRepo that implements it
-  create ModelInterface and ModelRepo which extends BaseRepo and Implment its own ModelInterface
-  Create DTO (Data Tranasfer object) which is reposbille for data transfaring
+  create ModelInterface and ModelRepo which extends BaseRepo and Implement its own ModelInterface
+  Create DTO (Data Transfer object) which is responsible for data Transferring
   use DTO inside the ModelRepo
   IN the controller __construct invoke the ModelRepoInterface
+
+
+-----------------------------------------
+Notes 2:
+- what is StdeClass?
+The stdClass in PHP is a generic, built-in class that represents a standard object.
+ It is often used as a lightweight, flexible container for data when you need an object but do
+  not want to define a custom class. Essentially, it is the default class for objects created
+   from associative arrays or when casting data to an object.
+
+
+----
+
+ tap() method allows as to retrieve the model, then update it inside the tap() method and return the updated model
+ tap() is perfect for chaining methods and writing shorter code that are totally unreadable but look cool👌👌

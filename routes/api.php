@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
 
 
-Route::get('/posts', [BlogPostController::class, 'index']);
-Route::get('/posts{blogPost}', [BlogPostController::class, 'show']);
-Route::post('/posts', [BlogPostController::class, 'store']);
-Route::put('/posts{blogPost}', [BlogPostController::class, 'update']);
-Route::delete('/posts{blogPost}', [BlogPostController::class, 'delete']);
+Route::get('v1/posts', [BlogPostController::class, 'index']);
+Route::get('v1/posts{blogPost}', [BlogPostController::class, 'show']);
+Route::post('v1/posts', [BlogPostController::class, 'store']);
+Route::put('v1/posts{blogPost}', [BlogPostController::class, 'update']);
+Route::delete('v1/posts{blogPost}', [BlogPostController::class, 'delete']);

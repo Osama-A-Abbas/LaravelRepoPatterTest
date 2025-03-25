@@ -12,6 +12,6 @@ interface BaseRepositoryInterface
 
     public function find(int $id): stdClass;
 
-    public function all();
+    //public function all();
     // public function create(array $data);
 }

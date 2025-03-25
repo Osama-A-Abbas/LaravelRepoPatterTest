@@ -10,6 +10,13 @@ class BlogPost extends Model
     /** @use HasFactory<\Database\Factories\BlogPostFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'body',
+        'source',
+        'published_at',
+    ];
+    
     protected $casts = [
         'source' => BlogPostSource::class,
     ];

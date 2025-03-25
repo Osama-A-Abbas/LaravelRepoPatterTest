@@ -21,8 +21,8 @@ class BlogPostDto  // DTO = Data Transfer Object
         return new self(
             title: $request->validated('title'),
             body: $request->validated('body'),
-            source: BlogPostSource::from($request->validated('body')),
-            publishedAt: Carbon::parse($request->validated('body')),
+            source: BlogPostSource::from($request->validated('source')),
+            publishedAt: Carbon::parse($request->validated('published_at')),
         );
     }
 }

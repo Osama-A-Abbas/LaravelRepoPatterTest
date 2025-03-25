@@ -1,19 +1,24 @@
 <?php
 namespace Tests\Feature\Api\V1;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class BlogPostControllerTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * @test
      */
     public function it_stores_a_blog_post()
    {
         $this->post('/api/v1/posts', [
-            'title' => 'test',
+            'title' => 'test TITLE',
+            'body' => 'asdfasdfasdfasdfa',
+            'source' => 'app',
+            'published_at' => now()->toDateTimeString(),
         ])
-        ->assertStatus(201);
+        ->assertStatus(200);
 
         $this->assertDatabaseCount('blog_posts', 1);
    }

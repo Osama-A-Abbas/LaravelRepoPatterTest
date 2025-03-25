@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use stdClass;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -10,13 +11,15 @@ class BaseRepository implements BaseRepositoryInterface
     protected Model $model
   ){}
 
-  public function find(int $id)
+
+  public function all(): array
   {
-    return $this->model->findOrFail($id)->toArray();
+      return (array) $this->model->all();
   }
 
-//   public function create(array $data)
-//   {
-//     return $this->model->create($data)->toArray();
-//   }
+  public function find(int $id): ?stdClass
+  {
+    return (object) $this->model->findOrFail($id)->toArray();
+  }
+
 }

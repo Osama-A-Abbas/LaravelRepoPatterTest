@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTransferObjects\BlogPostDto;
 use App\Models\BlogPost;
-use App\Http\Requests\StoreBlogPostRequest;
+use App\Http\Requests\BlogPostRequest;
 use App\Http\Requests\UpdateBlogPostRequest;
 use App\Http\Resources\BlogPostResource;
 use App\Repositories\BlogPostRepositoryInterface;
@@ -19,7 +20,9 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        return BlogPostResource::collection(BlogPost::all());
+        return BlogPostResource::collection(
+            $this->blogPostRepository->all()
+        );
     }
 
 
@@ -28,25 +31,35 @@ class BlogPostController extends Controller
      */
     public function show(BlogPost $blogPost)
     {
-        return BlogPostResource::make($blogPost);
+        return BlogPostResource::make(
+            $this->blogPostRepository->show($blogPost->id)
+        );
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBlogPostRequest $request)
+    public function store(BlogPostRequest $request)
     {
-        return BlogPost::create($request->validated());
+            //you can't use make on array UNLESS it is a collection 19:40 on the video
+        return BlogPostResource::make(
+            $this->blogPostRepository->create(
+            BlogPostDto::fromRequest($request)
+        ));
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBlogPostRequest $request, BlogPost $blogPost)
+    public function update(BlogPostRequest $request, BlogPost $blogPost)
     {
-        return $blogPost->update($request->validated());
+        return BlogPostResource::make(
+            $this->blogPostRepository->update(
+            $blogPost->id,
+            BlogPostDto::fromRequest($request)
+        ));
     }
 
     /**
@@ -54,6 +67,6 @@ class BlogPostController extends Controller
      */
     public function destroy(BlogPost $blogPost)
     {
-        return $blogPost->delete();
+        return $this->blogPostRepository->delete($blogPost->id);
     }
 }

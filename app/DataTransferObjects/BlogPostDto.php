@@ -3,7 +3,7 @@
 namespace App\DataTransferObjects;
 
 use App\Enums\BlogPostSource;
-use App\Http\Requests\StoreBlogPostRequest;
+use App\Http\Requests\BlogPostRequest;
 use Carbon\Carbon;
 
 class BlogPostDto  // DTO = Data Transfer Object
@@ -16,7 +16,7 @@ class BlogPostDto  // DTO = Data Transfer Object
     )
     {}
 
-    public function fromRequest(StoreBlogPostRequest $request)
+    public static function fromRequest(BlogPostRequest $request)
     {
         return new self(
             title: $request->validated('title'),
@@ -40,15 +40,15 @@ class BlogPostDto  // DTO = Data Transfer Object
 
 
 //fromRequest method EXPLANATION
-// The fromRequest method in the provided code is a factory method designed to create a new instance of the BlogPostDto class using data extracted from a StoreBlogPostRequest object. This method simplifies the process of transforming validated request data into a structured Data Transfer Object (DTO), which is commonly used to encapsulate and transport data between different layers of an application.
+// The fromRequest method in the provided code is a factory method designed to create a new instance of the BlogPostDto class using data extracted from a BlogPostRequest object. This method simplifies the process of transforming validated request data into a structured Data Transfer Object (DTO), which is commonly used to encapsulate and transport data between different layers of an application.
 
 // Key Details:
 // Parameter:
 
-// The method accepts a single parameter, $request, which is an instance of StoreBlogPostRequest. This class likely extends Laravel's FormRequest and provides validation logic for incoming HTTP requests.
+// The method accepts a single parameter, $request, which is an instance of BlogPostRequest. This class likely extends Laravel's FormRequest and provides validation logic for incoming HTTP requests.
 // Validated Data:
 
-// The $request->validated() method is used to retrieve data that has already been validated according to the rules defined in the StoreBlogPostRequest class. This ensures that only clean, expected data is used to create the DTO.
+// The $request->validated() method is used to retrieve data that has already been validated according to the rules defined in the BlogPostRequest class. This ensures that only clean, expected data is used to create the DTO.
 // Object Instantiation:
 
 // The new self(...) syntax creates a new instance of the BlogPostDto class. Named arguments are used to map the validated data directly to the DTO's properties, improving readability and reducing the risk of errors.
